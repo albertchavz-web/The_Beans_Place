@@ -65,17 +65,26 @@ import ContactSection from "./components/ContactSection";
 
 // imports go below here
 export default function App(){
+   const [theme, setTheme] = useState("light");
+    const [cartCount, setCartCount] = useState(0);
 
+    const toggleCart = () => setCartCount((current) => current + 1);
+    
+    return(
+        <div className="app">
 
-    return (
-        <div className = "app">
             {/* NavBar */}
-                <NavBar/>
+                <NavBar 
+                toggleCart={toggleCart}
+                cartCount={cartCount}
+                theme={theme}
+                onToggleTheme={() => setTheme((current) => (current === "light" ? "dark" : "light"))}
+            />
               
-
             {/* Hero */}
             <section className="hero bg-hero">
                 <div className="hero-grid">
+                    <HeroSection />
                 </div>
             </section>
 
