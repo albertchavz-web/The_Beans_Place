@@ -29,16 +29,10 @@
 // - ContactSection
 
 /* --- YOUR IMPORTS GO HERE --- */
+import { useState } from "react";
 import HeroSection from "./components/HeroSection";
-import FooterSection from "./components/FooterSection";
 import NavBar from "./components/NavBar";
 import RibbonTicker from "./components/RibbonTicker";
-import FeaturesSection from "./components/FeaturesSection";
-import ProductShowcase from "./components/ProductShowcase";
-import AboutSection from "./components/AboutSection";
-import CtaSection from "./components/CtaSection";
-import ContactSection from "./components/ContactSection";
-
 // STEP 2: Create and export the App component
 // Use: export default function App() { ... }
 //
@@ -64,62 +58,51 @@ import ContactSection from "./components/ContactSection";
 /* --- YOUR COMPONENT CODE GOES HERE --- */
 
 // imports go below here
-export default function App(){
-   const [theme, setTheme] = useState("light");
-    const [cartCount, setCartCount] = useState(0);
+export default function App() {
+  const [theme, setTheme] = useState("light");
+  const [cartCount, setCartCount] = useState(0);
 
-    const toggleCart = () => setCartCount((current) => current + 1);
-    
-    return(
-        <div className="app">
+  const toggleCart = () => setCartCount((current) => current + 1);
 
-            {/* NavBar */}
-                <NavBar 
-                toggleCart={toggleCart}
-                cartCount={cartCount}
-                theme={theme}
-                onToggleTheme={() => setTheme((current) => (current === "light" ? "dark" : "light"))}
-            />
-              
-            {/* Hero */}
-            <section className="hero bg-hero">
-                <div className="hero-grid">
-                    <HeroSection />
-                </div>
-            </section>
+  return (
+    <div className="app">
+      {/* NavBar */}
+      <NavBar
+        toggleCart={toggleCart}
+        cartCount={cartCount}
+        theme={theme}
+        onToggleTheme={() =>
+          setTheme((current) => (current === "light" ? "dark" : "light"))
+        }
+      />
 
-
-            {/* Featurees /Carousel */}
-            <section className= "features bg-features" id="shop">
-
-            </section>
-            
-            {/* Product showcase */}
-            <section className="bg-cta">
-
-            </section>
-
-            {/* CTA */}
-            <section className = "bg-cta">
-                
-            </section>
-
-            {/* About */}
-            <section className = "bg-cta" id="about">
-
-            </section>
-
-            {/* Contact */}
-            <section className = "bg-cta" id="contact">
-
-            </section>
-
-            {/* Footer */}
-            <section className = "bg-footer">
-        
-            </section>     
+      {/* Hero */}
+      <section className="hero bg-hero">
+        <div className="hero-grid">
+          <HeroSection />
         </div>
+      </section>
 
-    )
+      {/* Ribbon Ticker */}
+      <RibbonTicker />
 
-};
+      {/* Features / Carousel */}
+      <section className="features bg-features" id="shop"></section>
+
+      {/* Product showcase */}
+      <section className="bg-cta"></section>
+
+      {/* CTA */}
+      <section className="bg-cta"></section>
+
+      {/* About */}
+      <section className="bg-cta" id="about"></section>
+
+      {/* Contact */}
+      <section className="bg-cta" id="contact"></section>
+
+      {/* Footer */}
+      <section className="bg-footer"></section>
+    </div>
+  );
+}
