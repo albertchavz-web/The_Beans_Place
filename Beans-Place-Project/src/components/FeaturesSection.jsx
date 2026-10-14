@@ -37,7 +37,7 @@ import imgRedSulawesi from "../assets/Red-Sulawesi-Bag.png";
 import imgUrigacheffe from "../assets/Urigacheffe-Bag.png";
 import imgTanzaniaPeaberry from "../assets/Tanzania-Peaberry-Bag.png";
 import imgPanamaGeisha from "../assets/Panama-Geisha.png";
-import imgVietnameseRobusta from "../assets/Vietnamese-Robusta.png";
+import imgVietnameserobusta from "../assets/Vietnamese-Robusta.png";
 import imgBrazilianSantos from "../assets/Brazilian-Santos-Bag.png";
 import imgCostaRicaTarrazu from "../assets/Costa-Rica-Tarrazu-Bag.png";
 import imgGuatemalaAntigua from "../assets/Guatemala-Antigua-Bag.png";
@@ -167,7 +167,7 @@ function ImageRow({ images, offset = 0 }) {
       style={{ transform: `translate3d(${offset}px, 0, 0)` }}
     >
       {doubled.map((src, index) => (
-        <div className="carousel-card" key={`${index}`}>
+        <div className="carousel-card" key={`${src}-${index}`}>
           <img
             src={src}
             alt={`Coffee bag ${(index % images.length) + 1}`}
@@ -177,5 +177,45 @@ function ImageRow({ images, offset = 0 }) {
         </div>
       ))}
     </div>
+  );
+}
+
+export default function FeaturesSection() {
+  const sectionRef = useRef(null);
+  const [offsets, setOffsets] = useState([0, 0, 0]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+
+      const rect = sectionRef.current.getBoundingClientRect();
+      const viewHeight = window.innerHeight;
+      const progress = 1 - rect.bottom / (viewHeight + rect.height);
+      const p = Math.max(0, Math.min(1, progress));
+      const range = Math.min(window.innerWidth * 0.5, 600);
+
+      setOffsets([
+        -p * range,
+        // row1: slides left
+        p * range - range,
+        // row2:
+        -p * range * 0.7,
+      ]);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <section className="carousel-gallery-section" ref={sectionRef}>
+      <div className="carousel-gallery-container">
+        <ImageRow images={row1} offset={offsets[0]} />
+        <ImageRow images={row2} offset={offsets[1]} />
+        <ImageRow images={row3} offset={offsets[2]} />
+      </div>
+    </section>
   );
 }

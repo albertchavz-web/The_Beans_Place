@@ -94,7 +94,7 @@ export default function RibbonTicker() {
           {items.map((name, i) => (
             <motion.span
               key={i}
-              className="ribbon-items"
+              className="ribbon-item"
               whileHover={{ scale: 1.1, color: "#f0b955" }}
               transition={{ type: "spring", stiffness: 300 }}
             >
