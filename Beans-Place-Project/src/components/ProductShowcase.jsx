@@ -31,7 +31,7 @@
 //   imgPanamaGeisha, imgKona, imgGuatemalaAntigua
 
 /* --- YOUR IMPORTS GO HERE --- */
-import { motion as motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import ScrollReveal, { StaggerContainer, StaggerItem } from "./ui/ScrollReveal";
 import Badge from "./ui/Badge";
 import Button from "./ui/Button";
@@ -77,7 +77,7 @@ import Separator from "./ui/Separator";
 //       <StaggerContainer className="product-grid">
 //         {products.map((product) => (
 //           <StaggerItem key={product.name}>
-//             <motion.div className="product-card" whileHover={{ y: -8 }}>
+//             <Motion.div className="product-card" whileHover={{ y: -8 }}>
 //
 //               Image area:
 //                 <div className="product-card-image">
@@ -95,7 +95,7 @@ import Separator from "./ui/Separator";
 //                   <Button>Add to Cart</Button>
 //                 </div>
 //
-//             </motion.div>
+//             </Motion.div>
 //           </StaggerItem>
 //         ))}
 //       </StaggerContainer>
@@ -136,7 +136,7 @@ export default function ProductShowcase({ products = [], addToCart }) {
       <StaggerContainer staggerDelay={0.1} className="product-grid">
         {products.map((product) => (
           <StaggerItem key={product.name} animation="fadeUp">
-            <motion.div
+            <Motion.div
               className="product-card"
               whileHover={{ y: -8, transition: { duration: 0.25 } }}
             >
@@ -167,7 +167,7 @@ export default function ProductShowcase({ products = [], addToCart }) {
                   Add to cart
                 </Button>
               </div>
-            </motion.div>
+            </Motion.div>
           </StaggerItem>
         ))}
       </StaggerContainer>
